@@ -17,9 +17,9 @@ services:
     volumes:
       - setup:/state:Z
     environment:
-      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
-      LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
-      KIBANA_SYSTEM_PASSWORD: ${KIBANA_SYSTEM_PASSWORD:-}
+      ELASTIC_PASSWORD: "changeme"
+      LOGSTASH_INTERNAL_PASSWORD: "changeme"
+      KIBANA_SYSTEM_PASSWORD: "changeme"
 
   elasticsearch:
     build:
@@ -37,7 +37,7 @@ services:
       # Bootstrap password.
       # Used to initialize the keystore during the initial startup of
       # Elasticsearch. Ignored on subsequent runs.
-      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
+      ELASTIC_PASSWORD: "changeme"
       # Use single node discovery in order to disable production mode and avoid bootstrap checks.
       # see: https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
       discovery.type: single-node
@@ -58,7 +58,7 @@ services:
       - "9600:9600"
     environment:
       LS_JAVA_OPTS: -Xmx256m -Xms256m
-      LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+      LOGSTASH_INTERNAL_PASSWORD: "changeme"
     depends_on:
       - elasticsearch
 
@@ -72,7 +72,7 @@ services:
     ports:
       - "5601:5601"
     environment:
-      KIBANA_SYSTEM_PASSWORD: ${KIBANA_SYSTEM_PASSWORD:-}
+      KIBANA_SYSTEM_PASSWORD: "changeme"
     depends_on:
       - elasticsearch
 
